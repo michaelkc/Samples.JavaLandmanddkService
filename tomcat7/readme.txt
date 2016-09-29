@@ -1,0 +1,1 @@
+Unpack Tomcat 7.0.70 here. Server will launch at https://localhost:8443/ with password to manager app: admin/admin. It uses a self-signed certificate contained in .keystore
