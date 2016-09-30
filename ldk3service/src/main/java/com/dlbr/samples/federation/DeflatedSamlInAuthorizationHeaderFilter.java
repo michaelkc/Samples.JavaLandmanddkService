@@ -44,6 +44,7 @@ public class DeflatedSamlInAuthorizationHeaderFilter implements Filter {
 		{
 			System.out.println("No/Unparseable Authorization header, skipping authorization");
 			chain.doFilter(request,response);
+			return;
 		}
 		
 		DeflatedSamlTokenHeaderEncoder decoder = new DeflatedSamlTokenHeaderEncoder();
@@ -53,6 +54,7 @@ public class DeflatedSamlInAuthorizationHeaderFilter implements Filter {
 			System.out.println("Could not decode token:");
 			System.out.println(encodedToken);
 			chain.doFilter(request,response);
+			return;
 		}
 		
 		TokenValidator tokenValidator = new TokenValidator();
@@ -98,6 +100,7 @@ public class DeflatedSamlInAuthorizationHeaderFilter implements Filter {
 			System.out.println("Could not validate token:");
 			System.out.println(token);
 			chain.doFilter(request,response);
+			return;
 		}
 			
 		chain.doFilter(new FederatedHttpServletRequest(httpRequest, principal), response);
